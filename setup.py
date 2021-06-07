@@ -11,12 +11,31 @@ https://github.com/pypa/sampleproject
 """
 
 from setuptools import setup, find_packages
+import subprocess
 
 # To use a consistent encoding
 from codecs import open
 from os import path
 
 here = path.abspath(path.dirname(__file__))
+
+
+def get_version_from_git():
+    git_out = subprocess.check_output(["git", "describe", "--tags"])
+    version = git_out.strip().decode("utf-8")
+
+    # Detect a development build and mutate it to be valid semver and valid python version.
+    pieces = version.split("-")
+    if len(pieces) > 2:
+        # Merge the commit portion onto the commit count since the tag.
+        pieces[-2] += "+" + pieces[-1]
+        pieces.pop()
+        # Merge the commit count and build to the pre-release identifier.
+        pieces[-2] += ".dev." + pieces[-1]
+        pieces.pop()
+    version = "-".join(pieces)
+    return version
+
 
 # Get the long description from the README file
 with open(path.join(here, "README.rst"), encoding="utf-8") as f:
@@ -25,8 +44,8 @@ with open(path.join(here, "README.rst"), encoding="utf-8") as f:
 setup(
     # Community Bundle Information
     name="commedagh-circuitpython-pypi-version-testing",
-    use_scm_version=True,
-    setup_requires=["setuptools_scm"],
+    # use_scm_version=True,
+    # setup_requires=["setuptools_scm"],
     description="testing pypi versioning",
     long_description=long_description,
     long_description_content_type="text/x-rst",
@@ -35,6 +54,7 @@ setup(
     # Author details
     author="James Carr",
     author_email="",
+    version=get_version_from_git(),
     install_requires=[
         "Adafruit-Blinka",
         "n",
