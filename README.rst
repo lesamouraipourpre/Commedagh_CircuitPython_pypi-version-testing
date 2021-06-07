@@ -1,8 +1,6 @@
 Introduction
 ============
 
-
-
 .. image:: https://img.shields.io/discord/327254708534116352.svg
     :target: https://adafru.it/discord
     :alt: Discord
@@ -19,9 +17,9 @@ Introduction
 
 testing pypi versioning
 
-
 Dependencies
 =============
+
 This driver depends on:
 
 * `Adafruit CircuitPython <https://github.com/adafruit/circuitpython>`_
@@ -34,10 +32,6 @@ or individual libraries can be installed using
 
 Installing from PyPI
 =====================
-.. note:: This library is not available on PyPI yet. Install documentation is included
-   as a standard element. Stay tuned for PyPI availability!
-
-.. todo:: Remove the above note if PyPI version is/will be available at time of release.
 
 On supported GNU/Linux systems like the Raspberry Pi, you can install the driver locally `from
 PyPI <https://pypi.org/project/commedagh-circuitpython-pypi-version-testing/>`_.
@@ -91,7 +85,7 @@ Usage Example
 =============
 
 .. todo:: Add a quick, simple example. It and other examples should live in the
-examples folder and be included in docs/examples.rst.
+    examples folder and be included in docs/examples.rst.
 
 Contributing
 ============
