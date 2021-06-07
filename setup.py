@@ -21,20 +21,24 @@ here = path.abspath(path.dirname(__file__))
 
 
 def get_version_from_git():
-    git_out = subprocess.check_output(["git", "describe", "--tags"])
-    version = git_out.strip().decode("utf-8")
+    try:
+        git_out = subprocess.check_output(["git", "describe", "--tags"])
+        version = git_out.strip().decode("utf-8")
 
-    # Detect a development build and mutate it to be valid semver and valid python version.
-    pieces = version.split("-")
-    if len(pieces) > 2:
-        # Merge the commit portion onto the commit count since the tag.
-        pieces[-2] += "+" + pieces[-1]
-        pieces.pop()
-        # Merge the commit count and build to the pre-release identifier.
-        pieces[-2] += ".dev." + pieces[-1]
-        pieces.pop()
-    version = "-".join(pieces)
-    return version
+        # Detect a development build and mutate it to be valid semver and valid python version.
+        pieces = version.split("-")
+        if len(pieces) > 2:
+            # Merge the commit portion onto the commit count since the tag.
+            pieces[-2] += "+" + pieces[-1]
+            pieces.pop()
+            # Merge the commit count and build to the pre-release identifier.
+            pieces[-2] += ".dev." + pieces[-1]
+            pieces.pop()
+        version = "-".join(pieces)
+        return version
+    except subprocess.CalledProcessError as cpe:
+        print("CPE.OUTPUT", type(cpe.output), cpe.output)
+        return "0.0.0"
 
 
 # Get the long description from the README file
