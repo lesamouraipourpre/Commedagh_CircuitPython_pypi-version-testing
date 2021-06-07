@@ -38,6 +38,7 @@ def get_version_from_git():
         return version
     except subprocess.CalledProcessError as cpe:
         print("CPE.STDERR", type(cpe.stderr), cpe.stderr)
+        print("CPE.STDOUT", type(cpe.stdout), cpe.stdout)
         print("CPE.OUTPUT", type(cpe.output), cpe.output)
         return "0.0.0"
 
