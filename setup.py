@@ -61,6 +61,7 @@ setup(
     # Community Bundle Information
     name="commedagh-circuitpython-pypi-version-testing",
     use_scm_version={
+        "git_describe_command": "git describe --tags",
         "local_scheme": "no-local-version",
     },
     setup_requires=["setuptools_scm"],
@@ -94,5 +95,5 @@ setup(
     # simple. Or you can use find_packages().
     # TODO: IF LIBRARY FILES ARE A PACKAGE FOLDER,
     #       CHANGE `py_modules=['...']` TO `packages=['...']`
-    py_modules=["commedagh_pypi_version_testing"],
+    packages=["commedagh_pypi_version_testing"],
 )
