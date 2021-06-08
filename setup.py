@@ -60,10 +60,10 @@ with open(path.join(here, "README.rst"), encoding="utf-8") as f:
 setup(
     # Community Bundle Information
     name="commedagh-circuitpython-pypi-version-testing",
-    use_scm_version={
-        "local_scheme": "no-local-version",
-    },
-    setup_requires=["setuptools_scm"],
+    # use_scm_version={
+    #     "local_scheme": "no-local-version",
+    # },
+    # setup_requires=["setuptools_scm"],
     description="testing pypi versioning",
     long_description=long_description,
     long_description_content_type="text/x-rst",
