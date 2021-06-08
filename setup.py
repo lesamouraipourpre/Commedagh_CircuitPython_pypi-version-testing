@@ -48,7 +48,9 @@ with open(path.join(here, "README.rst"), encoding="utf-8") as f:
 setup(
     # Community Bundle Information
     name="commedagh-circuitpython-pypi-version-testing",
-    use_scm_version=True,
+    use_scm_version={
+        "local_scheme": "no-local-version",
+    },
     setup_requires=["setuptools_scm"],
     description="testing pypi versioning",
     long_description=long_description,
@@ -57,7 +59,7 @@ setup(
     url="https://github.com/lesamouraipourpre/Commedagh_CircuitPython_pypi-version-testing.git",
     # Author details
     author="James Carr",
-    author_email="",
+    author_email="lesamouraipourpre@gmail.com",
     version=get_version_from_git(),
     install_requires=[
         "Adafruit-Blinka",
