@@ -84,6 +84,7 @@ jobs:
         for file in $(find -not -path "./.*" -not -path "./docs*" -name "*.py"); do
             sed -i -e "s/0.0.0-auto.0/${{github.event.release.tag_name}}/" $file;
         done;
+        git update --assume-unchanged .
         python setup.py sdist
         twine upload dist/*
       #  # After the dist file is packaged, extract it, update the __version__
