@@ -61,7 +61,7 @@ setup(
     # Community Bundle Information
     name="commedagh-circuitpython-pypi-version-testing",
     use_scm_version={
-        "git_describe_command": "git describe --tags",
+        "git_describe_command": "git describe --tags --long",
         "local_scheme": "no-local-version",
     },
     setup_requires=["setuptools_scm"],
