@@ -81,10 +81,13 @@ jobs:
         TWINE_USERNAME: ${{ secrets.pypi_username }}
         TWINE_PASSWORD: ${{ secrets.pypi_password }}
       run: |
+        SETUPTOOLS_SCM_DEBUG=1 python setup.py --version
         for file in $(find -not -path "./.*" -not -path "./docs*" -name "*.py"); do
             sed -i -e "s/0.0.0-auto.0/${{github.event.release.tag_name}}/" $file;
         done;
+        SETUPTOOLS_SCM_DEBUG=1 python setup.py --version
         git update-index --assume-unchanged *.py
+        SETUPTOOLS_SCM_DEBUG=1 python setup.py --version
         python setup.py sdist
         twine upload dist/*
       #  # After the dist file is packaged, extract it, update the __version__
